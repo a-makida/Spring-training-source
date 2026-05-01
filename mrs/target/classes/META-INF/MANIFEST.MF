@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Built-By: r2111
+Build-Jdk: 25.0.2
+Implementation-Title: mrs
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: mrs
+Implementation-Vendor: Pivotal Software, Inc.
+Created-By: Maven Integration for Eclipse
+
