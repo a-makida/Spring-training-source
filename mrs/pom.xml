@@ -60,6 +60,12 @@
 			<groupId>org.thymeleaf.extras</groupId>
 			<artifactId>thymeleaf-extras-springsecurity4</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.3.1</version> <!-- 現時点の最新バージョンに更新 -->
+		</dependency>
+
 	</dependencies>
 
 	<build>
