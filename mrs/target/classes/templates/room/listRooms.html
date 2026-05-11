@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</title>
+<style>
+	body {
+		margin: 0;
+		min-height: 100vh;
+		font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+		background: radial-gradient(circle at top, #20232a 0%, #12161d 100%);
+		color: #e9ecef;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.room-card {
+		width: min(100%, 600px);
+		padding: 32px;
+		border-radius: 16px;
+		background: rgba(22, 28, 38, 0.96);
+		box-shadow: 0 18px 50px rgba(0, 0, 0, 0.35);
+		text-align: center;
+		border: 1px solid rgba(255, 255, 255, 0.08);
+	}
+
+	.room-card h3 {
+		margin: 0 0 24px;
+		font-size: 1.5rem;
+		letter-spacing: 0.02em;
+	}
+
+	.navigation {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 24px;
+	}
+
+	.navigation a {
+		color: #6c8ef0;
+		text-decoration: none;
+		font-weight: 500;
+		transition: color 0.2s ease;
+	}
+
+	.navigation a:hover {
+		color: #8ba3f0;
+	}
+
+	.navigation span {
+		font-size: 1.1rem;
+		font-weight: 600;
+	}
+
+	.room-list {
+		list-style: none;
+		padding: 0;
+		margin: 0 0 24px;
+	}
+
+	.room-list li {
+		margin: 8px 0;
+		padding: 12px 16px;
+		border-radius: 8px;
+		background: rgba(255, 255, 255, 0.05);
+		transition: background 0.2s ease;
+	}
+
+	.room-list li:hover {
+		background: rgba(255, 255, 255, 0.08);
+	}
+
+	.room-list a {
+		color: #e9ecef;
+		text-decoration: none;
+		font-weight: 500;
+		display: block;
+		transition: color 0.2s ease;
+	}
+
+	.room-list a:hover {
+		color: #6c8ef0;
+	}
+
+	.logout-form {
+		text-align: center;
+	}
+
+	.logout-form button {
+		padding: 10px 20px;
+		border: none;
+		border-radius: 8px;
+		background: #2d6a4f;
+		color: #ffffff;
+		font-size: 1rem;
+		font-weight: 600;
+		cursor: pointer;
+		box-shadow: 0 4px 12px rgba(45, 106, 79, 0.22);
+		transition: transform 0.2s ease, background 0.2s ease;
+	}
+
+	.logout-form button:hover {
+		transform: translateY(-1px);
+		background: #235f43;
+	}
+</style>
+</head>
+<body>
+	<div class="room-card">
+		<h3>会議室</h3>
+		<div class="navigation">
+			<a th:href="@{'/rooms/' + ${date.minusDays(1)}}">&lt; 前日</a>
+			<span th:text="|${#temporals.format(date, 'yyyy/M/d')}の会議室|">2016/5/20の会議室</span>
+			<a th:href="@{'/rooms/' + ${date.plusDays(1)}}">翌日 &gt;</a>
+		</div>
+		<ul class="room-list">
+			<li th:each="room: ${rooms}">
+				<a th:href="@{'/reservations/' + ${date} + '/' + ${room.meetingRoom.roomId}}"
+				   th:text="${room.meetingRoom.roomName}"></a>
+			</li>
+		</ul>
+		<form th:action="@{/logout}" method="post" class="logout-form">
+			<button>ログアウト</button>
+		</form>
+	</div>
+</body>
+</html>
